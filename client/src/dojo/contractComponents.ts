@@ -336,6 +336,20 @@ export function defineContractComponents(world: World) {
         },
       );
     })(),
+    LastSpawned: (() => {
+      const name = "LastSpawned";
+      return defineComponent(
+        world,
+        {
+          last_spawned_ts: RecsType.Number,
+        },
+        {
+          metadata: {
+            name: name,
+          },
+        },
+      );
+    })(),
     Owner: (() => {
       const name = "Owner";
       return defineComponent(
