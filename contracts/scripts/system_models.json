@@ -111,5 +111,6 @@
         "DetachedResource",
         "ForeignKey",
         "Inventory"
-    ]
+    ],
+    "NPC_SYSTEMS": ["Npc", "LastSpawned"],
 }
