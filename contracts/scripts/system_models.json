@@ -91,5 +91,6 @@
     ],
     "NAME_SYSTEMS": [
         "AddressName"
-    ]
+    ],
+	"NPC_SYSTEMS": ["Npc", "LastSpawned"],
 }
