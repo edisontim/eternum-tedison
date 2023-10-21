@@ -294,6 +294,22 @@ export function defineContractComponents(world: World) {
         },
       );
     })(),
+    Npc: (() => {
+      const name = "Npc";
+      return defineComponent(
+        world,
+        {
+          mood: RecsType.Number,
+          role: RecsType.Number,
+          sex: RecsType.Number,
+        },
+        {
+          metadata: {
+            name: name,
+          },
+        },
+      );
+    })(),
     Owner: (() => {
       const name = "Owner";
       return defineComponent(

@@ -74,6 +74,10 @@ export interface BuildLaborProps extends SystemSigner {
   multiplier: num.BigNumberish;
 }
 
+export interface SpawnNpcProps extends SystemSigner {
+  realm_entity_id: num.BigNumberish;
+}
+
 export interface HarvestLaborProps extends SystemSigner {
   realm_id: num.BigNumberish; // TODO: this is entity id not realm id
   resource_type: num.BigNumberish;

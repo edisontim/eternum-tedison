@@ -20,6 +20,7 @@ import {
   SendResourcesToHyperstructureProps,
   TransferResourcesProps,
   TravelProps,
+  SpawnNpcProps,
 } from "../types";
 import { Call } from "starknet";
 import { DEV_CONTRACTS, PROD_CONTRACTS } from "../constants";
@@ -64,6 +65,18 @@ export class EternumProvider extends RPCProvider {
       calldata: [this.contracts.WORLD_ADDRESS, entity_id, resource_type, labor_units, multiplier],
     });
 
+    return await this.provider.waitForTransaction(tx.transaction_hash, {
+      retryInterval: 500,
+    });
+  }
+
+  public async spawn_npc(props: SpawnNpcProps) {
+    const { realm_entity_id, signer } = props;
+    const tx = await this.executeMulti(signer, {
+      contractAddress: this.contracts.NPC_SYSTEMS,
+      entrypoint: "spawn_npc",
+      calldata: [this.contracts.WORLD_ADDRESS, realm_entity_id],
+    });
     return await this.provider.waitForTransaction(tx.transaction_hash, {
       retryInterval: 500,
     });

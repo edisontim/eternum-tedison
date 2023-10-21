@@ -12,7 +12,7 @@ import {
   CreateRoadProps,
   HarvestLaborProps,
   PurchaseLaborProps,
-  BuildLaborProps
+  BuildLaborProps,
 } from "@bibliothecadao/eternum";
 
 export const HIGH_ENTITY_ID = 9999999999;
@@ -266,6 +266,11 @@ export function createOptimisticSystemCalls({
     };
   }
 
+  //   TODO: implement optimistic spawn npc
+  function optimisticSpawnNpc() {
+    return async function () {};
+  }
+
   function optimisticHarvestLabor(ts: number, systemCall: (args: HarvestLaborProps) => Promise<void>) {
     return async function (this: any, args: HarvestLaborProps) {
       const { realm_id, resource_type } = args;
@@ -365,5 +370,6 @@ export function createOptimisticSystemCalls({
     optimisticBuildLabor,
     optimisticHarvestLabor,
     optimisticBuildRoad,
+    optimisticSpawnNpc,
   };
 }
