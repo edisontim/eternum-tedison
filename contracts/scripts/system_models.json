@@ -49,9 +49,14 @@
     "RESOURCE_SYSTEMS": [
         "Resource"
     ],
+	  "NPC_SYSTEMS": [
+		    "Npc"
+        "LastSpawned"
+	  ],    
     "TRAVEL_SYSTEMS": [
         "ArrivalTime",
         "Position",
         "Road"
-    ]
+    ],
+
 }
