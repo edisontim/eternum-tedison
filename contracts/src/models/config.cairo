@@ -1,4 +1,4 @@
-use eternum::constants::{WORLD_CONFIG_ID};
+use eternum::constants::{WORLD_CONFIG_ID, NPC_CONFIG_ID};
 
 use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait};
 
@@ -173,15 +173,13 @@ struct WeightConfig {
     weight_gram: u128,
 }
 
-
 trait WeightConfigTrait {
-    fn get_weight(world: IWorldDispatcher, resource_type: u8, amount: u128 ) -> u128;
+    fn get_weight(world: IWorldDispatcher, resource_type: u8, amount: u128) -> u128;
 }
 
 impl WeightConfigImpl of WeightConfigTrait {
-    fn get_weight(world: IWorldDispatcher, resource_type: u8, amount: u128 ) -> u128 {
-        let resource_weight_config 
-            = get!(world, (WORLD_CONFIG_ID, resource_type), WeightConfig);
+    fn get_weight(world: IWorldDispatcher, resource_type: u8, amount: u128) -> u128 {
+        let resource_weight_config = get!(world, (WORLD_CONFIG_ID, resource_type), WeightConfig);
 
         return resource_weight_config.weight_gram * amount;
     }
@@ -194,3 +192,12 @@ struct LevelingConfig {
     resource_cost_id: u128,
     resource_cost_count: u32
 }
+
+// npc
+#[derive(Model, Copy, Drop, Serde)]
+struct NpcConfig {
+    #[key]
+    config_id: u128,
+    spawn_delay: u128,
+}
+
