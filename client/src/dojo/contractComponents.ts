@@ -531,6 +531,21 @@ export function defineContractComponents(world: World) {
         },
       );
     })(),
+    LastSpawned: (() => {
+      const name = "LastSpawned";
+      return defineComponent(
+        world,
+        {
+          last_spawned_ts: RecsType.Number,
+        },
+        {
+          metadata: {
+            name: name,
+          },
+        },
+      );
+    })(),
+
     LaborAuction: (() => {
       return defineComponent(
         world,
