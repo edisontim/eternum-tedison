@@ -15,5 +15,6 @@ export function createClientComponents({ contractComponents }: SetupNetworkResul
     Inventory: overridableComponent(contractComponents.Inventory),
     ResourceChest: overridableComponent(contractComponents.ResourceChest),
     DetachedResource: overridableComponent(contractComponents.DetachedResource),
+    Npc: overridableComponent(contractComponents.Npc),
   };
 }

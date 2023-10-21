@@ -3,10 +3,12 @@ import { ReactComponent as CrossSwords } from "../../../assets/icons/common/cros
 import { ReactComponent as PickAxeSecond } from "../../../assets/icons/common/pick-axe-second.svg";
 import { ReactComponent as Coin } from "../../../assets/icons/common/coin.svg";
 import { ReactComponent as City } from "../../../assets/icons/common/city.svg";
+import { ReactComponent as Village } from "../../../assets/icons/common/village.svg";
 import { useLocation, useRoute } from "wouter";
 import { Tabs } from "../../../elements/tab";
 import RealmTradeComponent from "./RealmTradeComponent";
 import RealmLaborComponent from "./RealmLaborComponent";
+import RealmNpcComponent from "./RealmNpcComponent";
 import useUIStore from "../../../hooks/store/useUIStore";
 import useRealmStore from "../../../hooks/store/useRealmStore";
 import RealmCombatComponent from "./RealmCombatComponent";
@@ -85,6 +87,30 @@ const RealmManagementComponent = () => {
         component: <RealmTradeComponent />,
       },
       {
+        key: "villagers",
+        label: (
+          <div
+            onMouseEnter={() =>
+              setTooltip({
+                position: "bottom",
+                content: (
+                  <>
+                    <p className="whitespace-nowrap">A realm only thrives with villagers.</p>
+                    <p className="whitespace-nowrap">Treat them well or you</p>
+                    <p className="whitespace-nowrap">might get some bad surprises.</p>
+                  </>
+                ),
+              })
+            }
+            onMouseLeave={() => setTooltip(null)}
+            className="flex relative group flex-col items-center"
+          >
+            <Village className="mb-2 fill-gold" /> <div>Villagers</div>
+          </div>
+        ),
+        component: <RealmNpcComponent />,
+      },
+      {
         key: "military",
         label: (
           <div
@@ -143,6 +169,8 @@ const RealmManagementComponent = () => {
       _tab = "labor";
     } else if (["military", "army", "defense", "siege"].includes(params?.tab as string)) {
       _tab = "military";
+    } else if (["villagers"].includes(params?.tab as string)) {
+      _tab = "villagers";
     }
     const tabIndex = tabs.findIndex((tab) => tab.key === _tab);
     if (tabIndex >= 0) {
