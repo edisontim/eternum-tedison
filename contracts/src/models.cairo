@@ -4,6 +4,7 @@ mod position;
 mod realm;
 mod resources;
 mod labor;
+mod last_spawned;
 mod owner;
 mod capacity;
 mod movable;

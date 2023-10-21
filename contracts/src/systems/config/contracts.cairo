@@ -4,70 +4,64 @@ mod config_systems {
 
     use eternum::models::labor_auction::LaborAuction;
     use eternum::models::config::{
-        LaborCostResources, LaborCostAmount, LaborConfig,CapacityConfig, 
-        RoadConfig, SpeedConfig, TravelConfig, WeightConfig,WorldConfig,
+        LaborCostResources, LaborCostAmount, LaborConfig, CapacityConfig, RoadConfig, SpeedConfig,
+        NpcConfig, TravelConfig, WeightConfig, WorldConfig,
     };
 
     use eternum::systems::config::interface::{
-        IWorldConfig, IWeightConfig, ICapacityConfig, ILaborConfig, 
-        ITransportConfig, IHyperstructureConfig
+        IWorldConfig, IWeightConfig, ICapacityConfig, ILaborConfig, ITransportConfig,
+        IHyperstructureConfig, INpcConfig
     };
 
     use eternum::constants::{
-        WORLD_CONFIG_ID, LABOR_CONFIG_ID, TRANSPORT_CONFIG_ID, ROAD_CONFIG_ID
+        WORLD_CONFIG_ID, LABOR_CONFIG_ID, TRANSPORT_CONFIG_ID, ROAD_CONFIG_ID, NPC_CONFIG_ID
     };
 
     use eternum::models::hyperstructure::HyperStructure;
     use eternum::models::resources::ResourceCost;
     use eternum::models::position::{Position, Coord};
-    
 
 
     #[external(v0)]
     impl WorldConfigImpl of IWorldConfig<ContractState> {
         fn set_world_config(
-            self: @ContractState, 
-            world: IWorldDispatcher, 
+            self: @ContractState,
+            world: IWorldDispatcher,
             realm_l2_contract: starknet::ContractAddress
         ) {
-            set!(
-                world,
-                (WorldConfig {
-                    config_id: WORLD_CONFIG_ID,
-                    realm_l2_contract
-                })
-            );
+            set!(world, (WorldConfig { config_id: WORLD_CONFIG_ID, realm_l2_contract }));
         }
     }
 
+    #[external(v0)]
+    impl NpcConfigImpl of INpcConfig<ContractState> {
+        fn set_spawn_config(self: @ContractState, world: IWorldDispatcher, spawn_delay: u128) {
+            set!(world, (NpcConfig { config_id: NPC_CONFIG_ID, spawn_delay }));
+        }
+    }
 
 
     #[external(v0)]
     impl CapacityConfigImpl of ICapacityConfig<ContractState> {
         fn set_capacity_config(
-            self: @ContractState, 
-            world: IWorldDispatcher, 
-            entity_type: u128, 
-            weight_gram: u128
+            self: @ContractState, world: IWorldDispatcher, entity_type: u128, weight_gram: u128
         ) {
-            set!(world, (
-                CapacityConfig {
+            set!(
+                world,
+                (CapacityConfig {
                     config_id: WORLD_CONFIG_ID,
                     carry_capacity_config_id: entity_type,
                     entity_type,
                     weight_gram,
-                }
-            ));
+                })
+            );
         }
     }
 
     #[external(v0)]
     impl WeightConfigImpl of IWeightConfig<ContractState> {
         fn set_weight_config(
-            self: @ContractState, 
-            world: IWorldDispatcher, 
-            entity_type: u128, 
-            weight_gram: u128
+            self: @ContractState, world: IWorldDispatcher, entity_type: u128, weight_gram: u128
         ) {
             set!(
                 world,
@@ -82,15 +76,13 @@ mod config_systems {
     }
 
 
-
-
     #[external(v0)]
     impl LaborConfigImpl of ILaborConfig<ContractState> {
         fn set_labor_cost_resources(
-            self: @ContractState, 
-            world: IWorldDispatcher, 
-            resource_type_labor: felt252, 
-            resource_types_packed: u128, 
+            self: @ContractState,
+            world: IWorldDispatcher,
+            resource_type_labor: felt252,
+            resource_types_packed: u128,
             resource_types_count: u8
         ) {
             // set cost of creating labor for resource id 1 
@@ -98,37 +90,33 @@ mod config_systems {
             set!(
                 world,
                 (LaborCostResources {
-                    resource_type_labor, 
-                    resource_types_packed, 
-                    resource_types_count
+                    resource_type_labor, resource_types_packed, resource_types_count
                 })
             );
         }
 
 
         fn set_labor_cost_amount(
-            self: @ContractState, 
-            world: IWorldDispatcher, 
-            resource_type_labor: felt252, 
-            resource_type_cost: felt252, 
+            self: @ContractState,
+            world: IWorldDispatcher,
+            resource_type_labor: felt252,
+            resource_type_cost: felt252,
             resource_type_value: u128
         ) {
             set!(
                 world,
                 (LaborCostAmount {
-                    resource_type_labor, 
-                    resource_type_cost, 
-                    value: resource_type_value
+                    resource_type_labor, resource_type_cost, value: resource_type_value
                 })
             );
         }
 
 
         fn set_labor_config(
-            self: @ContractState, 
-            world: IWorldDispatcher, 
-            base_labor_units: u64, 
-            base_resources_per_cycle: u128, 
+            self: @ContractState,
+            world: IWorldDispatcher,
+            base_labor_units: u64,
+            base_resources_per_cycle: u128,
             base_food_per_cycle: u128
         ) {
             // set labor config
@@ -145,10 +133,10 @@ mod config_systems {
 
 
         fn set_labor_auction(
-            self: @ContractState, 
-            world: IWorldDispatcher, 
-            decay_constant: u128, 
-            per_time_unit: u128, 
+            self: @ContractState,
+            world: IWorldDispatcher,
+            decay_constant: u128,
+            per_time_unit: u128,
             price_update_interval: u128
         ) {
             let start_time = starknet::get_block_timestamp();
@@ -160,8 +148,9 @@ mod config_systems {
                     break;
                 }
 
-                set!(world, (
-                    LaborAuction {
+                set!(
+                    world,
+                    (LaborAuction {
                         zone,
                         decay_constant_mag: decay_constant,
                         decay_constant_sign: false,
@@ -169,44 +158,35 @@ mod config_systems {
                         start_time,
                         sold: 0,
                         price_update_interval,
-                    }
-                ));
+                    })
+                );
 
                 zone += 1;
             };
         }
-
     }
-
-
 
 
     #[external(v0)]
     impl TransportConfigImpl of ITransportConfig<ContractState> {
         fn set_road_config(
-            self: @ContractState, 
-            world: IWorldDispatcher, 
-            fee_resource_type: u8, 
-            fee_amount: u128, 
+            self: @ContractState,
+            world: IWorldDispatcher,
+            fee_resource_type: u8,
+            fee_amount: u128,
             speed_up_by: u64
         ) {
             set!(
                 world,
                 (RoadConfig {
-                    config_id: ROAD_CONFIG_ID,
-                    fee_resource_type,
-                    fee_amount,
-                    speed_up_by
+                    config_id: ROAD_CONFIG_ID, fee_resource_type, fee_amount, speed_up_by
                 })
             );
         }
 
 
         fn set_speed_config(
-            self: @ContractState, 
-            world: IWorldDispatcher, 
-            entity_type: u128, 
-            sec_per_km: u16
+            self: @ContractState, world: IWorldDispatcher, entity_type: u128, sec_per_km: u16
         ) {
             set!(
                 world,
@@ -221,27 +201,15 @@ mod config_systems {
 
 
         fn set_travel_config(
-            self: @ContractState, 
-            world: IWorldDispatcher, 
-            free_transport_per_city: u128
+            self: @ContractState, world: IWorldDispatcher, free_transport_per_city: u128
         ) {
-
-            set!(
-                world,
-                (TravelConfig {
-                    config_id: TRANSPORT_CONFIG_ID,
-                    free_transport_per_city
-                })
-            );
-
+            set!(world, (TravelConfig { config_id: TRANSPORT_CONFIG_ID, free_transport_per_city }));
         }
     }
 
 
-
     #[external(v0)]
     impl HyperstructureConfigImpl of IHyperstructureConfig<ContractState> {
-
         fn create_hyperstructure(
             self: @ContractState,
             world: IWorldDispatcher,
@@ -252,7 +220,7 @@ mod config_systems {
         ) -> ID {
             let mut initialization_resources = initialization_resources;
             let mut construction_resources = construction_resources;
-        
+
             let initialization_resource_count = initialization_resources.len();
             assert(initialization_resource_count > 0, 'resources must not be empty');
 
@@ -264,53 +232,62 @@ mod config_systems {
             let mut index = 0;
             loop {
                 match initialization_resources.pop_front() {
-                    Option::Some((resource_type, resource_amount)) => {
+                    Option::Some((
+                        resource_type, resource_amount
+                    )) => {
                         assert(*resource_amount > 0, 'amount must not be 0');
 
-                        set!(world, (
-                            ResourceCost {
+                        set!(
+                            world,
+                            (ResourceCost {
                                 entity_id: initialization_resource_id,
                                 index,
                                 resource_type: *resource_type,
                                 amount: *resource_amount
-                            }
-                        ));
+                            })
+                        );
 
                         index += 1;
                     },
-                    Option::None => {break;}
+                    Option::None => {
+                        break;
+                    }
                 };
             };
-
 
             // create construction resource cost components
             let construction_resource_id: ID = world.uuid().into();
             let mut index = 0;
             loop {
                 match construction_resources.pop_front() {
-                    Option::Some((resource_type, resource_amount)) => {
+                    Option::Some((
+                        resource_type, resource_amount
+                    )) => {
                         assert(*resource_amount > 0, 'amount must not be 0');
 
-                        set!(world, (
-                            ResourceCost {
+                        set!(
+                            world,
+                            (ResourceCost {
                                 entity_id: construction_resource_id,
                                 index,
                                 resource_type: *resource_type,
                                 amount: *resource_amount
-                            }
-                        ));
+                            })
+                        );
 
                         index += 1;
                     },
-                    Option::None => {break;}
+                    Option::None => {
+                        break;
+                    }
                 };
             };
 
-
             let hyperstructure_id: ID = world.uuid().into();
 
-            set!(world, (
-                HyperStructure {
+            set!(
+                world,
+                (HyperStructure {
                     entity_id: hyperstructure_id,
                     hyperstructure_type,
                     initialization_resource_id,
@@ -321,12 +298,10 @@ mod config_systems {
                     completed_at: 0,
                     coord_x: coord.x,
                     coord_y: coord.y
-                }
-            ));  
+                })
+            );
 
-            hyperstructure_id 
-                
+            hyperstructure_id
         }
-
     }
 }
