@@ -122,7 +122,7 @@ export interface BuildLaborProps extends SystemSigner {
 }
 
 export interface SpawnNpcProps extends SystemSigner {
-  realm_entity_id: num.BigNumberish;
+  realm_id: num.BigNumberish;
 }
 
 export interface HarvestLaborProps extends SystemSigner {
