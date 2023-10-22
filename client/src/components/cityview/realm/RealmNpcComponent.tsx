@@ -39,26 +39,7 @@ export const RealmNpcComponent = ({}: RealmVillagersComponentProps) => {
     () => [
       {
         key: "villagers",
-        label: (
-          <div
-            onMouseEnter={() =>
-              setTooltip({
-                position: "bottom",
-                content: (
-                  <>
-                    <p className="whitespace-nowrap">Look at your current production,</p>
-                    <p className="whitespace-nowrap">or increase it by buying labour or buildings.</p>
-                    <p className="whitespace-nowrap">Don't forget to harvest your resources.</p>
-                  </>
-                ),
-              })
-            }
-            onMouseLeave={() => setTooltip(null)}
-            className="flex relative group flex-col items-center"
-          >
-            <div>All</div>
-          </div>
-        ),
+        label: <div>All</div>,
         component: <NpcPanel />,
       },
       //   {
