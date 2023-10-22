@@ -11,6 +11,7 @@ import {
   HarvestLaborProps,
   PurchaseLaborProps,
   BuildLaborProps,
+  SpawnNpcProps,
 } from "@bibliothecadao/eternum";
 
 export const HIGH_ENTITY_ID = 9999999999n;
@@ -25,6 +26,7 @@ export function createOptimisticSystemCalls({
   DetachedResource,
   ResourceChest,
   Inventory,
+  Npc,
 }: ClientComponents) {
   function optimisticCreateOrder(systemCall: (args: any) => Promise<any>) {
     return async function (this: any, args: CreateOrderProps): Promise<void | number> {
@@ -283,10 +285,29 @@ export function createOptimisticSystemCalls({
       }
     };
   }
-  
+
   //   TODO: implement optimistic spawn npc
-  function optimisticSpawnNpc() {
-    return async function () {};
+  function optimisticSpawnNpc(systemCall: (args: SpawnNpcProps) => Promise<void>) {
+    return async function (this: any, args: SpawnNpcProps) {
+      const { realm_id } = args;
+      const overrideId = uuid();
+      console.log(realm_id);
+      Npc.addOverride(overrideId, {
+        entity: getEntityIdFromKeys([BigInt(10000000)]),
+        value: {
+          realm_id: Number(realm_id),
+          mood: 0,
+          role: 0,
+          sex: 0,
+        },
+      });
+      try {
+        await systemCall(args); // Call the original function with its arguments and correct context
+      } finally {
+        // remove overrides
+        Npc.removeOverride(overrideId);
+      }
+    };
   }
 
   function optimisticHarvestLabor(
