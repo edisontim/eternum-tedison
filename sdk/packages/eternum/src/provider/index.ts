@@ -71,11 +71,11 @@ export class EternumProvider extends RPCProvider {
   }
 
   public async spawn_npc(props: SpawnNpcProps) {
-    const { realm_entity_id, signer } = props;
+    const { realm_id, signer } = props;
     const tx = await this.executeMulti(signer, {
       contractAddress: this.contracts.NPC_SYSTEMS,
       entrypoint: "spawn_npc",
-      calldata: [this.contracts.WORLD_ADDRESS, realm_entity_id],
+      calldata: [this.contracts.WORLD_ADDRESS, realm_id],
     });
     return await this.provider.waitForTransaction(tx.transaction_hash, {
       retryInterval: 500,
