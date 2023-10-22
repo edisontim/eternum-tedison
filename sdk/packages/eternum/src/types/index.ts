@@ -78,6 +78,12 @@ export interface SpawnNpcProps extends SystemSigner {
   realm_id: num.BigNumberish;
 }
 
+export interface ChangeMoodProps extends SystemSigner {
+  realm_id: num.BigNumberish;
+  npc_id: num.BigNumberish;
+  mood: num.BigNumberish;
+}
+
 export interface HarvestLaborProps extends SystemSigner {
   realm_id: num.BigNumberish; // TODO: this is entity id not realm id
   resource_type: num.BigNumberish;
