@@ -23,10 +23,10 @@ export const RealmNpcComponent = ({}: RealmVillagersComponentProps) => {
   useEffect(() => {
     let _tab: string = "";
     if (["farmers"].includes(params?.tab as string)) {
-      _tab = "farmers";
+      //   _tab = "farmers";
       moveCameraToFoodView();
     } else {
-      _tab = params?.tab as any;
+      //   _tab = params?.tab as any;
       moveCameraToLaborView();
     }
     const tabIndex = tabs.findIndex((tab) => tab.key === _tab);
@@ -61,24 +61,24 @@ export const RealmNpcComponent = ({}: RealmVillagersComponentProps) => {
         ),
         component: <NpcPanel />,
       },
-      {
-        key: "farmers",
-        label: (
-          <div className="flex flex-col items-center">
-            <div>Farmers</div>
-          </div>
-        ),
-        component: <NpcPanel type="farmers" />,
-      },
-      {
-        key: "miners",
-        label: (
-          <div className="flex flex-col items-center">
-            <div>Miners</div>
-          </div>
-        ),
-        component: <NpcPanel type="miners" />,
-      },
+      //   {
+      //     key: "farmers",
+      //     label: (
+      //       <div className="flex flex-col items-center">
+      //         <div>Farmers</div>
+      //       </div>
+      //     ),
+      //     component: <NpcPanel type="farmers" />,
+      //   },
+      //   {
+      //     key: "miners",
+      //     label: (
+      //       <div className="flex flex-col items-center">
+      //         <div>Miners</div>
+      //       </div>
+      //     ),
+      //     component: <NpcPanel type="miners" />,
+      //   },
     ],
     [selectedTab],
   );
