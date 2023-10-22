@@ -6,10 +6,11 @@ export interface ChatMessageProps {
   sender: string;
   message: string;
   avatar: string;
+  timestamp: string;
 }
 
 const ChatMessage = (props: ChatMessageProps) => {
-  const { sender, message, avatar } = props;
+  const { sender, message, avatar, timestamp } = props;
 
   // const name = useMemo(() =>
   // (sender.includes('stark') ?
