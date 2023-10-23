@@ -182,7 +182,7 @@ export const LaborComponent = ({
             <Button
               className="!px-[6px] !py-[2px] text-xxs"
               variant="success"
-              //   disabled={nextHarvest === 0}
+              disabled={nextHarvest === 0}
               onClick={onHarvest}
             >
               Harvest
