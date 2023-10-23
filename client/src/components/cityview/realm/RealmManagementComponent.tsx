@@ -15,10 +15,13 @@ import useRealmStore from "../../../hooks/store/useRealmStore";
 import RealmStatusComponent from "./RealmStatusComponent";
 import { useGetRealm } from "../../../hooks/helpers/useRealm";
 import { LaborAuction } from "./labor/LaborAuction";
+import { NpcProvider } from "../../../NpcContext";
 
 const RealmManagementComponent = () => {
   const { realmEntityId } = useRealmStore();
   const { realm } = useGetRealm(realmEntityId);
+  const [genMsg, setGenMsg] = useState(false);
+  const [type, setType] = useState("");
 
   const [selectedTab, setSelectedTab] = useState(1);
 
@@ -164,34 +167,36 @@ const RealmManagementComponent = () => {
 
   return (
     <>
-      <div className="flex justify-between items-center p-2">
-        <RealmStatusComponent />
-        <button
-          onClick={showOnMap}
-          className="flex items-center hover:bg-gold/20 transition-bg duration-200 z-10 px-2 py-1 ml-auto text-xxs border rounded-md text-gold border-gold"
+      <NpcProvider setGenMsg={setGenMsg} genMsg={genMsg} type={type} setType={setType}>
+        <div className="flex justify-between items-center p-2">
+          <RealmStatusComponent />
+          <button
+            onClick={showOnMap}
+            className="flex items-center hover:bg-gold/20 transition-bg duration-200 z-10 px-2 py-1 ml-auto text-xxs border rounded-md text-gold border-gold"
+          >
+            <Map className="mr-1 fill-current" />
+            Show on map
+          </button>
+        </div>
+        <LaborAuction />
+        <Tabs
+          selectedIndex={selectedTab}
+          onChange={(index: any) => setLocation(`/realm/${realmEntityId}/${tabs[index].key}`)}
+          variant="primary"
+          className="flex-1 mt-4 overflow-hidden"
         >
-          <Map className="mr-1 fill-current" />
-          Show on map
-        </button>
-      </div>
-      <LaborAuction />
-      <Tabs
-        selectedIndex={selectedTab}
-        onChange={(index: any) => setLocation(`/realm/${realmEntityId}/${tabs[index].key}`)}
-        variant="primary"
-        className="flex-1 mt-4 overflow-hidden"
-      >
-        <Tabs.List>
-          {tabs.map((tab, index) => (
-            <Tabs.Tab key={index}>{tab.label}</Tabs.Tab>
-          ))}
-        </Tabs.List>
-        <Tabs.Panels className="overflow-hidden">
-          {tabs.map((tab, index) => (
-            <Tabs.Panel key={index}>{tab.component}</Tabs.Panel>
-          ))}
-        </Tabs.Panels>
-      </Tabs>
+          <Tabs.List>
+            {tabs.map((tab, index) => (
+              <Tabs.Tab key={index}>{tab.label}</Tabs.Tab>
+            ))}
+          </Tabs.List>
+          <Tabs.Panels className="overflow-hidden">
+            {tabs.map((tab, index) => (
+              <Tabs.Panel key={index}>{tab.component}</Tabs.Panel>
+            ))}
+          </Tabs.Panels>
+        </Tabs>
+      </NpcProvider>
     </>
   );
 };

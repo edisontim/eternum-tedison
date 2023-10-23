@@ -13,6 +13,7 @@ import { useMemo } from "react";
 import { soundSelector, useUiSounds } from "../../../../hooks/useUISound";
 import { useComponentValue } from "@dojoengine/react";
 import useRealmStore from "../../../../hooks/store/useRealmStore";
+import { useNpcs } from "../../../../NpcContext";
 
 type LaborComponentProps = {
   resourceId: number;
@@ -38,6 +39,8 @@ export const LaborComponent = ({
     account: { account },
   } = useDojo();
 
+  const { setGenMsg, setType } = useNpcs();
+
   const nextBlockTimestamp = useBlockchainStore((state) => state.nextBlockTimestamp);
 
   const { realmEntityId } = useRealmStore();
@@ -62,14 +65,16 @@ export const LaborComponent = ({
 
   const onHarvest = () => {
     playHarvest();
-    optimisticHarvestLabor(
-      nextBlockTimestamp || 0,
-      harvest_labor,
-    )({
-      signer: account,
-      realm_id: realmEntityId,
-      resource_type: resourceId,
-    });
+    setGenMsg(true);
+    setType("farmer");
+    // optimisticHarvestLabor(
+    //   nextBlockTimestamp || 0,
+    //   harvest_labor,
+    // )({
+    //   signer: account,
+    //   realm_id: realmEntityId,
+    //   resource_type: resourceId,
+    // });
   };
 
   // if the labor balance does not exist or is lower than the current time,
@@ -185,7 +190,7 @@ export const LaborComponent = ({
             <Button
               className="!px-[6px] !py-[2px] text-xxs"
               variant="success"
-              disabled={nextHarvest === 0}
+              //   disabled={nextHarvest === 0}
               onClick={onHarvest}
             >
               Harvest

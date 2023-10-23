@@ -13,7 +13,6 @@ export const RealmNpcComponent = ({}: RealmVillagersComponentProps) => {
 
   const moveCameraToLaborView = useUIStore((state) => state.moveCameraToLaborView);
   const moveCameraToFoodView = useUIStore((state) => state.moveCameraToFoodView);
-  const setTooltip = useUIStore((state) => state.setTooltip);
 
   // @ts-ignore
   const [location, setLocation] = useLocation();
