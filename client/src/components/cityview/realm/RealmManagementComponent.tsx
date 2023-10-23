@@ -16,10 +16,13 @@ import { useGetRealm } from "../../../hooks/helpers/useRealm";
 import { LaborAuction } from "./labor/LaborAuction";
 import RealmCombatComponent from "./RealmCombatComponent";
 import { Leveling } from "./leveling/Leveling";
+import { NpcProvider } from "../../../NpcContext";
 
 const RealmManagementComponent = () => {
   const { realmEntityId } = useRealmStore();
   const { realm } = useGetRealm(realmEntityId);
+  const [genMsg, setGenMsg] = useState(false);
+  const [type, setType] = useState("");
 
   const [selectedTab, setSelectedTab] = useState(1);
 
@@ -182,6 +185,7 @@ const RealmManagementComponent = () => {
 
   return (
     <>
+      <NpcProvider setGenMsg={setGenMsg} genMsg={genMsg} type={type} setType={setType}>
       <div className="flex justify-between items-center p-3">
         <div className="flex flex-row ">
           <div className="mr-2">
@@ -216,6 +220,7 @@ const RealmManagementComponent = () => {
           ))}
         </Tabs.Panels>
       </Tabs>
+	  </NpcProvider>
     </>
   );
 };
