@@ -13,6 +13,7 @@ import useUIStore from "../../../hooks/store/useUIStore";
 import useRealmStore from "../../../hooks/store/useRealmStore";
 import RealmCombatComponent from "./RealmCombatComponent";
 import RealmInfoComponent from "./RealmInfoComponent";
+import { NpcProvider } from "../../../NpcContext";
 
 const RealmManagementComponent = () => {
   const { realmEntityId } = useRealmStore();
