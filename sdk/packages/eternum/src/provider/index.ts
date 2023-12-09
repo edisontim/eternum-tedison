@@ -88,9 +88,9 @@ export class EternumProvider extends RPCProvider {
   public async change_mood(props: ChangeMoodProps) {
     const { realm_id, npc_id, mood, signer } = props;
     const tx = await this.executeMulti(signer, {
-      contractAddress: this.contracts.NPC_SYSTEMS,
+      contractAddress: getContractByName(this.manifest, "npc_systems"),
       entrypoint: "change_mood",
-      calldata: [this.contracts.WORLD_ADDRESS, realm_id, npc_id, mood],
+      calldata: [this.getWorldAddress(), realm_id, npc_id, mood],
     });
     return await this.provider.waitForTransaction(tx.transaction_hash, {
       retryInterval: 500,
