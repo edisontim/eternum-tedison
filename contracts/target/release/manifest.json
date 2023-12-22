@@ -2727,7 +2727,7 @@
     {
       "name": "eternum::systems::npc::contracts::npc_systems",
       "address": null,
-      "class_hash": "0x330e2e0af36610d5c55f05a8016720d4d30d7c20ab545dda551703c1090f540",
+      "class_hash": "0x3a4a9e4bebf8dcf717382da2b8bbf17aff95448bdf968e63409b3bc68cc0cf9",
       "abi": [
         {
           "type": "impl",
@@ -2788,30 +2788,6 @@
                   "type": "core::felt252"
                 }
               ],
-              "state_mutability": "view"
-            },
-            {
-              "type": "function",
-              "name": "change_mood",
-              "inputs": [
-                {
-                  "name": "world",
-                  "type": "dojo::world::IWorldDispatcher"
-                },
-                {
-                  "name": "realm_id",
-                  "type": "core::felt252"
-                },
-                {
-                  "name": "npc_id",
-                  "type": "core::felt252"
-                },
-                {
-                  "name": "mood",
-                  "type": "core::felt252"
-                }
-              ],
-              "outputs": [],
               "state_mutability": "view"
             }
           ]
@@ -11944,22 +11920,12 @@
           "key": false
         },
         {
-          "name": "mood",
+          "name": "characteristics",
           "type": "felt252",
-          "key": false
-        },
-        {
-          "name": "role",
-          "type": "u8",
-          "key": false
-        },
-        {
-          "name": "sex",
-          "type": "u8",
           "key": false
         }
       ],
-      "class_hash": "0x39a1f3ba8755547bfda6703d53696a9223512db0a5b458e94cfc89103a1e901",
+      "class_hash": "0x121b85bc995c5651333ee0217add464b9b8f9454bf70fd36b33c2017dd41d2c",
       "abi": [
         {
           "type": "function",

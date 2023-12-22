@@ -1,7 +1,7 @@
 {
   "world": {
     "name": "dojo::world::world",
-    "address": null,
+    "address": "0x5cb4ce060de62a7b6bfd4cb70fd4ae3196bfe399c372cb0863e632ba8cc73ef",
     "class_hash": "0x5ac623f0c96059936bd2d0904bdd31799e430fe08a0caff7a5f497260b16497",
     "abi": [
       {
@@ -948,7 +948,7 @@
   "contracts": [
     {
       "name": "eternum::systems::bank::contracts::bank_systems",
-      "address": null,
+      "address": "0x193936374e972c355f2246c66c62860c986dea275ce8fbd03d7d7a1d853a572",
       "class_hash": "0x360eeec2fd56ce2971ffcab6caa153af9b2f59ffa5460c075d800791ec68fe",
       "abi": [
         {
@@ -1103,7 +1103,7 @@
     },
     {
       "name": "eternum::systems::combat::contracts::combat_systems",
-      "address": null,
+      "address": "0x1b0a83a27a357e0574393ab06c0c774db7312a0993538cc0186d054f75ee84e",
       "class_hash": "0x287802bac159071e6a182872595a4a8203261be99a365b6d42b683f08d30459",
       "abi": [
         {
@@ -1456,7 +1456,7 @@
     },
     {
       "name": "eternum::systems::config::contracts::config_systems",
-      "address": null,
+      "address": "0x7fff06bbcbe4f42f22c86b14e7a80604495c8b2034d14cbb10d32402c933ca8",
       "class_hash": "0x40b80887936eca10bf8e68b08f1ff5f29948e55a8977acb7205ade1d41f0d96",
       "abi": [
         {
@@ -2237,7 +2237,7 @@
     },
     {
       "name": "eternum::systems::labor::contracts::labor_systems",
-      "address": null,
+      "address": "0x38258ae4007920aacda4f00c6960837ff9b235e8af95f648347f36550e6d1ee",
       "class_hash": "0x332f5ce561ff4b6b9ec3947a5e9ce5a53637b0131f87f029532090e87cc0fe6",
       "abi": [
         {
@@ -2432,7 +2432,7 @@
     },
     {
       "name": "eternum::systems::leveling::contracts::leveling_systems",
-      "address": null,
+      "address": "0x29ae99df03a05e0be62f21c42ed50e18c3c5eff9372030791e6f6ed8377b5b3",
       "class_hash": "0x3bebafb096c5ff90466ccca710f83de2e87e1b35894133b7c37efc1533f2234",
       "abi": [
         {
@@ -2587,7 +2587,7 @@
     },
     {
       "name": "eternum::systems::name::contracts::name_systems",
-      "address": null,
+      "address": "0x6ffa340922922ac70f06fc191996926e5df47ba4833185c1ff54c0b356930c",
       "class_hash": "0x4512a18fbd685899142bcdb05968234c2c43dff2e767ca9ee8d18974096545b",
       "abi": [
         {
@@ -2726,7 +2726,7 @@
     },
     {
       "name": "eternum::systems::npc::contracts::npc_systems",
-      "address": null,
+      "address": "0x2edc6b1b51c5ca1b114708fff13534839f9e526175fd6159795df7210685cf4",
       "class_hash": "0x3a4a9e4bebf8dcf717382da2b8bbf17aff95448bdf968e63409b3bc68cc0cf9",
       "abi": [
         {
@@ -2869,7 +2869,7 @@
     },
     {
       "name": "eternum::systems::realm::contracts::realm_systems",
-      "address": null,
+      "address": "0x25df90992b8eebca69f08035ceda822dee73028e828ceb8421895814eacd3d",
       "class_hash": "0x47c24a1dcceda0238659739e1241f9ba03aa07ab9485f64cfb0f39efbdca99a",
       "abi": [
         {
@@ -3070,7 +3070,7 @@
     },
     {
       "name": "eternum::systems::resources::contracts::resource_systems",
-      "address": null,
+      "address": "0x406b259886beb36b2474c7a85ad8298b948eeca68b3a185ee7ba870dbc025c8",
       "class_hash": "0x10a7acf6285fda1ae673c0427a271e2d4cfc2f16de3843293bc241ed9ac1557",
       "abi": [
         {
@@ -3346,7 +3346,7 @@
     },
     {
       "name": "eternum::systems::test::contracts::resource::test_resource_systems",
-      "address": null,
+      "address": "0x501733faf4b36b7359ecf918fa8437e1b6c4f23287ff3011d8a2eda6c6c2224",
       "class_hash": "0x1a1d2a1477b8e7e0bcff4751a80a0903fc6b9dffe2431262adced7123e64d9b",
       "abi": [
         {
@@ -3499,7 +3499,7 @@
     },
     {
       "name": "eternum::systems::trade::contracts::trade_systems::trade_systems",
-      "address": null,
+      "address": "0x63cbe849cf6325e727a8d6f82f25fad7dc7eb9433767f5c1b8c59189e36c9b6",
       "class_hash": "0x2cc28709c89ec4b37e17ee24865cca41a494cef8734890830d66d8135864ac6",
       "abi": [
         {
@@ -3712,7 +3712,7 @@
     },
     {
       "name": "eternum::systems::transport::contracts::caravan_systems::caravan_systems",
-      "address": null,
+      "address": "0x3f8d39786c3f984482b25a770fc85fd2a4f45725e74fdd385c5c38e9f5681c6",
       "class_hash": "0x26d8441fd2b13fe067a85fcb932c8ec28331b980dd6b4e22080590deaac377f",
       "abi": [
         {
@@ -3855,7 +3855,7 @@
     },
     {
       "name": "eternum::systems::transport::contracts::road_systems::road_systems",
-      "address": null,
+      "address": "0x5e434426794d353a5c2f5de42859a963d9b696db575cec07ca605d19bd83a99",
       "class_hash": "0xc852c14930e5babd63d5afcd6ea486e05e53d66f5741f52241288d1f2af655",
       "abi": [
         {
@@ -4020,7 +4020,7 @@
     },
     {
       "name": "eternum::systems::transport::contracts::transport_unit_systems::transport_unit_systems",
-      "address": null,
+      "address": "0x4146e12ea99aeb071b29776bd591bbc74174817dad41521650e9164e226b5eb",
       "class_hash": "0x462ed4c61027d073e863fcf2a4f4e59653528e0598169300460b2b7f36730da",
       "abi": [
         {
@@ -4167,7 +4167,7 @@
     },
     {
       "name": "eternum::systems::transport::contracts::travel_systems::travel_systems",
-      "address": null,
+      "address": "0x740ea95e67b0b7533ee4891524c5c7edfd7fefc09297c0304b21515cc1223ec",
       "class_hash": "0x616e17c006eb11d765338c359a6c5163823a1c0d3dfcc9bbcd527f6bef53cd9",
       "abi": [
         {
